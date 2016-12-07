@@ -2,7 +2,7 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-  entry: './src/main.js',
+  entry: './src/entry.js',
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
@@ -15,6 +15,9 @@ module.exports = {
         loader: 'vue-loader',
         options: {
           // vue-loader options go here
+          postcss: function () {
+          	return [require('postcss-salad')];
+          }
         }
       },
       {
@@ -24,7 +27,10 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader'
+        loaders: [
+          'style-loader',
+          'css-loader?importLoaders=1'
+        ]
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,
@@ -36,7 +42,12 @@ module.exports = {
         query: {
           name: '[name].[ext]?[hash]'
         }
+      },
+      {
+         test: /\.json$/,
+         loader: 'json-loader'
       }
+
     ]
   },
   resolve: {

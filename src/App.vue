@@ -1,52 +1,46 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <h1>{{ msg }}</h1>
-    <mt-button @click.native="startHacking">Let's do it</mt-button>
+  <div>
+    <router-link class="page-back" v-if="visible" :to="'/'">
+      <i class="mintui mintui-back"></i>
+    </router-link>
+    <router-view></router-view>
   </div>
 </template>
 
-<script>
-export default {
-  name: 'app',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
-  },
-  methods: {
-    startHacking () {
-      this.$toast('It Works!')
+<style>
+  @reset-global mobile;
+
+  html, body {
+    background-color: #fafafa;
+    -webkit-overflow-scrolling: touch;
+    user-select: none;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  .page-back {
+    display: inline-block;
+    position: absolute 12px * * 10px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    i {
+      font-size: 24px;
+      line-height: 40px;
     }
   }
-}
-</script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
 </style>
+
+<script type="text/babel">
+  import 'mint-ui/src/assets/font/iconfont.css';
+
+  export default {
+    computed: {
+      visible() {
+        return ['/', '/header', '/search'].indexOf(this.$route.path) < 0;
+      }
+    }
+  };
+</script>
