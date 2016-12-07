@@ -3,7 +3,7 @@
 
 
 一直疑惑，有必要搞太多复杂的二次编译开发前段项目吗？类似postcss这种好难搞的。
-如果你需要posstcss的版本，参照这个分支
+如果你需要postcss的版本，参照这个分支
 https://github.com/baryon/mint-ui-starter/tree/postcss
 
 # mint-ui-starter
